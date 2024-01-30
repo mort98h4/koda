@@ -28,7 +28,7 @@ namespace api.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("FistName")
+                    b.Property<string>("FirstName")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
