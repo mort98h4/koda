@@ -10,7 +10,7 @@ using api.Models;
 
 namespace api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Users")]
     [ApiController]
     public class UsersController : ControllerBase
     {
