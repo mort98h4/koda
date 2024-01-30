@@ -15,5 +15,11 @@ namespace api.Data
         }
 
         public DbSet<api.Models.User> User { get; set; } = null!;
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasAlternateKey(u => u.Email);
+        }
     }
 }
