@@ -1,4 +1,17 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using api.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+if (builder.Environment.IsDevelopment()) {
+    builder.Services.AddDbContext<UserContext>(options =>
+        options.UseSqlite(builder.Configuration.GetConnectionString("UserContext") ?? throw new InvalidOperationException("Connection string 'UserContext' not found.")));
+}
+else {
+    builder.Services.AddDbContext<UserContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("UserContext") ?? throw new InvalidOperationException("Connection string 'UserContext' not found.")));
+}
 
 // Add services to the container.
 
