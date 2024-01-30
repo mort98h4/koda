@@ -10,7 +10,7 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20240130194506_InitialCreate")]
+    [Migration("20240130204957_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -26,18 +26,26 @@ namespace api.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ArtistName")
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasAlternateKey("Email");
 
                     b.ToTable("User");
                 });
