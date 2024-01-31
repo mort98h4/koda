@@ -47,30 +47,22 @@ namespace api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(long id, User user)
         {
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(user).State = EntityState.Modified;
+            if (id != user.Id) return BadRequest();
 
             try
             {
+                if (!UserExists(id)) return NotFound();
+                if (EmailExistsInDB(user.Email, id)) return BadRequest($"'{user.Email}' already exists.");
+
+                _context.Entry(user).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception) 
             {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                throw;
             }
 
-            return NoContent();
+            return Ok(user);
         }
 
         // POST: api/Users
@@ -103,6 +95,21 @@ namespace api.Controllers
         private bool UserExists(long id)
         {
             return _context.User.Any(e => e.Id == id);
+        }
+
+        private bool EmailExistsInDB(string email, long id)
+        {
+            _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            var user = _context.User.Find(id);
+
+            if (email == user?.Email)
+            {
+                return false;
+            }
+            else
+            {
+                return _context.User.Any(e => e.Email == email);
+            }
         }
     }
 }
