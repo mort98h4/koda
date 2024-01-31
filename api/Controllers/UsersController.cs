@@ -70,8 +70,16 @@ namespace api.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-            _context.User.Add(user);
-            await _context.SaveChangesAsync();
+            try 
+            {
+                if (EmailExistsInDB(user.Email)) return BadRequest($"'{user.Email}' already exists.");
+                _context.User.Add(user);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
 
             return CreatedAtAction(nameof(GetUser), new { id = user.Id }, user);
         }
@@ -97,7 +105,7 @@ namespace api.Controllers
             return _context.User.Any(e => e.Id == id);
         }
 
-        private bool EmailExistsInDB(string email, long id)
+        private bool EmailExistsInDB(string email, long id = 0)
         {
             _context.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
             var user = _context.User.Find(id);
