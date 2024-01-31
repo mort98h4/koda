@@ -11,18 +11,18 @@ public class User
     [Required]
     [StringLength(50, MinimumLength = 2)]
     [Display(Name = "First name")]
-    public string? FirstName { get; set; }
+    public string FirstName { get; set; } = "";
 
     [Required]
     [StringLength(50, MinimumLength = 2)]
     [Display(Name = "Last name")]
-    public string? LastName { get; set; }
+    public string LastName { get; set; } = "";
 
     [StringLength(50, MinimumLength = 2)]
     [Display(Name = "Artist name")]
-    public string? ArtistName { get; set; }
+    public string ArtistName { get; set; } = "";
 
     [Required]
     [EmailAddress]
-    public string? Email { get; set; }
+    public string Email { get; set; } = "";
 }
