@@ -18,7 +18,7 @@ public class User
     [Display(Name = "Last name")]
     public string LastName { get; set; } = "";
 
-    [StringLength(50, MinimumLength = 2)]
+    [StringLength(50)]
     [Display(Name = "Artist name")]
     public string ArtistName { get; set; } = "";
 
