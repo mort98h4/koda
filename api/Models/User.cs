@@ -20,7 +20,7 @@ public class User
 
     [StringLength(50)]
     [Display(Name = "Artist name")]
-    public string ArtistName { get; set; } = "";
+    public string? ArtistName { get; set; } = "";
 
     [Required]
     [EmailAddress]
