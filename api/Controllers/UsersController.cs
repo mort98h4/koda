@@ -45,14 +45,14 @@ namespace api.Controllers
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(long id, User user)
+        public async Task<IActionResult> PutUser([FromForm]long id, User user)
         {
             if (id != user.Id) return BadRequest();
 
             try
             {
                 if (!UserExists(id)) return NotFound();
-                if (EmailExistsInDB(user.Email, id)) return BadRequest($"'{user.Email}' already exists.");
+                if (EmailExistsInDB(user.Email, id)) return BadRequest(new {error = $"'{user.Email}' already exists."});
 
                 _context.Entry(user).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
@@ -68,11 +68,11 @@ namespace api.Controllers
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<User>> PostUser([FromForm] User user)
         {
             try 
             {
-                if (EmailExistsInDB(user.Email)) return BadRequest($"'{user.Email}' already exists.");
+                if (EmailExistsInDB(user.Email)) return BadRequest(new {error = $"'{user.Email}' already exists."});
                 _context.User.Add(user);
                 await _context.SaveChangesAsync();
             }
