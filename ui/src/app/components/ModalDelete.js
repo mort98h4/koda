@@ -15,7 +15,7 @@ export function ModalDelete({id}) {
     return (
         <section id="modalDelete" className='hidden absolute top-0 w-screen h-screen bg-black/50 flex items-center justify-center'>
             <div onClick={toggleModal} data-modal="modalDelete" className="w-full h-full absolute z-0"></div>
-            <div className='w-fit z-10 relative bg-gray-100 border border-gray-300 dark:bg-neutral-800 dark:border-neutral-700 text-center p-12 m-4 rounded-lg'>
+            <div className='w-fit z-10 relative border bg-neutral-800 border-neutral-700 text-center p-12 m-4 rounded-lg'>
                 <button onClick={toggleModal} data-modal="modalDelete" className='absolute top-4 right-4 text-xl transition-colors text-white/50 hover:text-white'>
                     <FontAwesomeIcon className="pointer-events-none" icon={faXmark}></FontAwesomeIcon>
                 </button>

@@ -19,7 +19,7 @@ export function Form({action, user}) {
             <div className="text-sm flex flex-col col-span-6 lg:col-span-2 lg:col-start-2">
                 <label htmlFor="firstName" className="text-xs opacity-50 pl-1 pb-1">First name</label>
                 <input
-                    className="rounded-lg py-2 px-1 transition-colors border border-gray-300 dark:border-neutral-700 bg-gray-100 dark:bg-neutral-800/50 focus:border-gray-500"
+                    className="rounded-lg py-2 px-1 transition-colors border border-neutral-700 bg-neutral-800/50 focus:border-gray-500"
                     type="text"
                     name="firstName"
                     id="firstName"
@@ -32,7 +32,7 @@ export function Form({action, user}) {
             <div className="text-sm flex flex-col col-span-6 lg:col-span-2">
                 <label htmlFor="lastName" className="text-xs opacity-50 pl-1 pb-1">Last name</label>
                 <input
-                    className="rounded-lg py-2 px-1 transition-colors border border-gray-300 dark:border-neutral-700 bg-gray-100 dark:bg-neutral-800/50 focus:border-gray-500"
+                    className="rounded-lg py-2 px-1 transition-colors border border-neutral-700 bg-neutral-800/50 focus:border-gray-500"
                     type="text"
                     name="lastName"
                     id="lastName"
@@ -45,7 +45,7 @@ export function Form({action, user}) {
             <div className="text-sm flex flex-col col-span-6 lg:col-span-2 lg:col-start-2">
                 <label htmlFor="artistName" className="text-xs opacity-50 pl-1 pb-1">Artist name</label>
                 <input
-                    className="rounded-lg py-2 px-1 transition-colors border border-gray-300 dark:border-neutral-700 bg-gray-100 dark:bg-neutral-800/50 focus:border-gray-500"
+                    className="rounded-lg py-2 px-1 transition-colors border border-neutral-700 bg-neutral-800/50 focus:border-gray-500"
                     type="text"
                     name="artistName"
                     id="artistName"
@@ -56,7 +56,7 @@ export function Form({action, user}) {
             <div className="text-sm flex flex-col col-span-6 lg:col-span-2">
                 <label htmlFor="email" className="text-xs opacity-50 pl-1 pb-1">Email</label>
                 <input
-                    className="rounded-lg py-2 px-1 transition-colors border border-gray-300 dark:border-neutral-700 bg-gray-100 dark:bg-neutral-800/50 focus:border-gray-500"
+                    className="rounded-lg py-2 px-1 transition-colors border border-neutral-700 bg-neutral-800/50 focus:border-gray-500"
                     type="text"
                     name="email"
                     id="email"
