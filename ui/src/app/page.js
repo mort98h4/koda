@@ -16,12 +16,7 @@ async function getData() {
 }
 
 export default async function Home() {
-
   const users = await getData();
-  console.log(users);
-  users.map(user => {
-    console.log(user.firstName);
-  })
 
   return (
     <main className="flex min-h-screen flex-col items-center  p-24">
@@ -41,10 +36,7 @@ export default async function Home() {
               <Link href={`/user/edit/${user.id}`} className='opacity-0 transition-opacity group-hover:opacity-50 hover:!opacity-100' >
                 <FontAwesomeIcon icon={faPen} />
               </Link>
-              
-              {/* <FontAwesomeIcon className='text-red-500 opacity-0' icon={faTrashCan} /> */}
-            </div>
-            
+            </div>            
           </li>
         ))}
       </ul>
