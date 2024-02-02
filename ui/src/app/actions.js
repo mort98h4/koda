@@ -18,7 +18,6 @@ export async function PostUser(prevState, formData) {
 
 export async function PutUser(prevState, formData) {
     const userId = formData.get("id");
-    console.log(userId);
 
     const conn = await fetch(`http://localhost:5009/api/Users/${userId}`, {
         method: "PUT",
@@ -32,4 +31,21 @@ export async function PutUser(prevState, formData) {
     }
 
     return {message: "User was successfully updated"}
+}
+
+export async function DeleteUser(prevState, formData) {
+    const userId = formData.get("id");
+
+    const conn = await fetch(`http://localhost:5009/api/Users/${userId}`, {
+        method: "DELETE"
+    });
+
+    if(!conn.ok) {
+        const info = await conn.json();
+        console.log(info);
+        return {error: info.error};
+    }
+
+    revalidatePath('/'); 
+    redirect("/");
 }
