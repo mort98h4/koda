@@ -10,8 +10,26 @@ export async function PostUser(prevState, formData) {
 
     if (!conn.ok) {
         const info = await conn.json();
-        return {message: info.error};
+        return {error: info.error};
     }
     revalidatePath('/'); 
     redirect("/");
+}
+
+export async function PutUser(prevState, formData) {
+    const userId = formData.get("id");
+    console.log(userId);
+
+    const conn = await fetch(`http://localhost:5009/api/Users/${userId}`, {
+        method: "PUT",
+        body: formData
+    });
+
+    if (!conn.ok) {
+        const info = await conn.json();
+        console.log(info);
+        return {error: info.error};
+    }
+
+    return {message: "User was successfully updated"}
 }
