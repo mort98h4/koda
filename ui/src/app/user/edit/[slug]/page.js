@@ -1,11 +1,12 @@
 "use client"
 import React, { useState, useEffect } from 'react';
 import { Form } from "@/app/components/Form";
+import { ModalDelete } from '@/app/components/ModalDelete';
 import { PutUser } from '@/app/actions';
 import Link from 'next/link';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowLeft
+  faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function UserEdit({params}) {
@@ -29,16 +30,16 @@ export default function UserEdit({params}) {
     if (!isClient) return null;
 
     return (
-        <main className='flex min-h-screen flex-col items-center p-24'>
+        <main className='flex min-h-screen flex-col items-center p-24 relative'>
             <header className='text-center'>
                 <h1 className='mb-3 text-2xl font-semibold'>Edit user</h1>
             </header>
             <Form action={PutUser} user={user}></Form>
-
             <Link href="/" className='text-sm hover:underline'>
                 <FontAwesomeIcon className='mr-2' icon={faArrowLeft} />
                 Go back
             </Link>
+            <ModalDelete id={user?.id}></ModalDelete>
         </main>
     )
 }
