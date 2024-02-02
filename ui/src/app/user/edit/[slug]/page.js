@@ -2,12 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import { Form } from "@/app/components/Form";
 import { ModalDelete } from '@/app/components/ModalDelete';
+import { Header } from '@/app/components/Header';
 import { PutUser } from '@/app/actions';
-import Link from 'next/link';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowLeft,
-} from "@fortawesome/free-solid-svg-icons";
+import { GoBack } from '@/app/components/GoBack';
+import { MainEl } from '@/app/components/Main';
 
 export default function UserEdit({params}) {
     const [user, setUser] = useState(null);
@@ -30,16 +28,11 @@ export default function UserEdit({params}) {
     if (!isClient) return null;
 
     return (
-        <main className='flex min-h-screen flex-col items-center p-24 relative'>
-            <header className='text-center'>
-                <h1 className='mb-3 text-2xl font-semibold'>Edit user</h1>
-            </header>
+        <MainEl>
+            <Header title='Update user'></Header>
             <Form action={PutUser} user={user}></Form>
-            <Link href="/" className='text-sm hover:underline'>
-                <FontAwesomeIcon className='mr-2' icon={faArrowLeft} />
-                Go back
-            </Link>
+            <GoBack href="/"></GoBack>
             <ModalDelete id={user?.id}></ModalDelete>
-        </main>
+        </MainEl>
     )
 }
