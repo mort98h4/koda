@@ -2,6 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import { Form } from "@/app/components/Form";
 import { PutUser } from '@/app/actions';
+import Link from 'next/link';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowLeft
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function UserEdit({params}) {
     const [user, setUser] = useState(null);
@@ -29,6 +34,11 @@ export default function UserEdit({params}) {
                 <h1 className='mb-3 text-2xl font-semibold'>Edit user</h1>
             </header>
             <Form action={PutUser} user={user}></Form>
+
+            <Link href="/" className='text-sm hover:underline'>
+                <FontAwesomeIcon className='mr-2' icon={faArrowLeft} />
+                Go back
+            </Link>
         </main>
     )
 }
