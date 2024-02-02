@@ -1,5 +1,6 @@
 import React from 'react'
 import { useFormState } from 'react-dom';
+import { toggleModal } from './ModalDelete';
 
 const initialState = {
     error: null,
@@ -8,7 +9,6 @@ const initialState = {
 
 export function Form({action, user}) {
     const [state, formAction] = useFormState(action, initialState);
-    console.log(user);
     return (
         <form className="w-full grid grid-cols-6 gap-4 py-4 px-5" action={formAction}>
             {
@@ -74,7 +74,12 @@ export function Form({action, user}) {
                     {state?.message}
                 </p>
             </div>
-            <div className='col-span-6 text-center py-4'>
+            <div className='col-span-6 text-center py-4 flex justify-center gap-2'>
+                {
+                    user ?
+                        <button onClick={toggleModal} data-modal="modalDelete" type="button" className='px-4 py-1 font-semibold rounded-lg transition-colors bg-red-500/50 border border-red-500 hover:bg-red-500'>Delete</button>
+                    : ""
+                }
                 <button type='submit' className='px-4 py-1 font-semibold rounded-lg transition-colors bg-green-500/50 border border-green-500 hover:bg-green-500'>
                     {
                         user ? "Update" : "Create"
